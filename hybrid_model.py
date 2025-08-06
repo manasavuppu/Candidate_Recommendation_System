@@ -4,38 +4,41 @@ from llama_index.core import VectorStoreIndex
 from llama_index.core.schema import TextNode
 from dotenv import load_dotenv
 import os
-
-load_dotenv()
-
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
 
-# Prompt template
+# Load environment variables
+load_dotenv()
+
+# Prompt template for summary generation
 SUMMARY_PROMPT = ChatPromptTemplate.from_template(
-    "Given the following job description and candidate resume, generate a 3-sentence summary explaining why this candidate is a good fit.\n\nJob Description:\n{job}\n\nResume:\n{resume}"
+    """
+    Given the following job description and candidate resume, generate a 3-sentence summary explaining why this candidate is a good fit.
+
+    Job Description:
+    {job}
+
+    Resume:
+    {resume}
+    """
 )
 
-# LLM for summaries
+# Initialize LLM
 llm = ChatOpenAI(model="gpt-3.5-turbo", temperature=0.7)
 
-# Utility to generate a fit summary and return prompt for transparency
-def generate_fit_summary(job_desc: str, resume_text: str) -> tuple:
-    try:
-        # Generate list of messages (LangChain Message objects)
-        messages = SUMMARY_PROMPT.format_messages(job=job_desc, resume=resume_text)
-        
-        # Pass messages to LLM
-        response = llm(messages)
+# Function to generate AI summary
 
-        print("=== PROMPT ===")
-        print(messages[0].content)
-        print("=== RESPONSE ===")
-        print(response.content)
-            
-        # Return both the input and response for transparency
-        return messages[0].content, response.content
+def generate_fit_summary(job_desc: str, resume_text: str) -> tuple:
+    prompt_text = SUMMARY_PROMPT.format_messages(job=job_desc, resume=resume_text[:1500])
+
+    try:
+        response = llm.invoke(prompt_text)
+        return prompt_text[0].content, response.content
     except Exception as e:
-        return "Prompt error", f"Error generating summary: {str(e)}"
+        return prompt_text[0].content, f"[ERROR] Summary generation failed: {e}"
+
+# Function to rank candidates
 
 def query_top_k_candidates(job_desc, resumes, top_k=5, include_summary=False, min_score=0.5):
     results = []
