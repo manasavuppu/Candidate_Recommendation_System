@@ -1,0 +1,13 @@
+# Ignore virtual environments
+venv/
+env/
+cand_rec_env/
+
+# Ignore Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# Ignore secrets
+.env
+.DS_Store
