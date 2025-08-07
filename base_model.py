@@ -1,17 +1,19 @@
 import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from dotenv import load_dotenv
 from typing import List, Dict, Tuple
 from openai import OpenAI
-import openai
 import numpy as np
 
 # Load environment variables
 load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+
+# Initialize OpenAI client with explicit API key
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Load the sentence embedding model
 embedder = SentenceTransformer("all-MiniLM-L6-v2")
@@ -30,9 +32,8 @@ def compute_similarity(job_emb: np.ndarray, resume_embs: List[np.ndarray]) -> np
     resume_matrix = np.vstack(resume_embs)
     return cosine_similarity(job_vector, resume_matrix)[0]
 
-client = OpenAI()  # uses your OPENAI_API_KEY from env
-
-def generate_fit_summary(job_desc: str, resume_text: str) -> tuple:
+def generate_fit_summary(job_desc: str, resume_text: str) -> Tuple[str, str]:
+    """Generate a 2-3 sentence AI summary explaining candidate fit."""
     prompt = f"""You are an AI recruiting assistant.
 
 Here is a job description:
