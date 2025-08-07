@@ -1,3 +1,6 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from dotenv import load_dotenv
@@ -5,7 +8,6 @@ from typing import List, Dict, Tuple
 from openai import OpenAI
 import openai
 import numpy as np
-import os
 
 # Load environment variables
 load_dotenv()
