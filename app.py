@@ -113,13 +113,14 @@ if st.button("Find Top Candidates"):
             if not results:
                 st.warning("No candidates matched the minimum similarity score threshold. Try lowering the threshold.")
             else:
+                st.toast(f"{len(results)} candidates passed the threshold!", icon="✅")
                 st.caption(f"{len(results)} out of {len(resume_data)} candidates passed the threshold of {min_score}.")
                 for i, res in enumerate(results, 1):
                     name = res.get('file_name', res.get('name', f"Candidate {i}"))
                     score = res.get('similarity_score', res.get('score', 0))
                     st.markdown(f"### {i}. {name}")
                     st.write(f"**Similarity Score:** `{score}`")
-                    if use_summaries and "summary" in res:
+                    if use_summaries and res.get("summary", "").strip():
                         st.info(res['summary'])
 
 # ============================
@@ -152,7 +153,7 @@ if "latest_results" in st.session_state and st.button("Show Behind-the-Scenes (E
     if use_summaries:
         st.subheader("Summary Prompt Debug")
         for res in results:
-            if 'prompt' in res and 'summary' in res:
+            if res.get("summary", "").strip():
                 with st.expander(f"{res.get('file_name', res.get('name', 'Unnamed'))} Prompt & Summary"):
                     st.markdown("**Prompt Sent to LLM:**")
                     st.code(res['prompt'])
