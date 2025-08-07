@@ -10,6 +10,7 @@ import numpy as np
 
 # Load environment variables
 load_dotenv()
+openai.api_key = os.getenv("OPENAI_API_KEY")
 
 # Prompt template for summary generation
 SUMMARY_PROMPT = ChatPromptTemplate.from_template(
