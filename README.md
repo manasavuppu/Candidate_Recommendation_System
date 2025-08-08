@@ -1,4 +1,5 @@
 # Candidate Recommendation System
+Streamlit App Link: https://candidate-recommendation-system.streamlit.app/
 
 This repository contains an interactive Streamlit application that intelligently matches candidate resumes to job descriptions using semantic similarity techniques and optional AI-generated summaries. It also includes visualizations to help users understand the matching process.
 
@@ -68,31 +69,6 @@ In today’s fast-paced hiring landscape, recruiters need intelligent tools to q
 | File Types        | PDF, DOCX, TXT                           |
 
 ---
-
-## Running the App Locally
-
-### Setup Instructions
-
-```bash
-# Clone the repository
-git clone https://github.com/manasavuppu/Candidate_Recommendation_System.git
-cd Candidate_Recommendation_System
-
-# Create and activate virtual environment
-python3 -m venv cand_rec_env
-source cand_rec_env/bin/activate  # On Windows: cand_rec_env\Scripts\activate
-
-# Install dependencies
-pip install -r requirements.txt
-
-Environment Setup
-Create a .env file in the project root directory with the following content:
-OPENAI_API_KEY=your-openai-key-here
-Ensure that .env is listed in your .gitignore file to avoid accidentally pushing secrets to GitHub.
-
-Run the Application
-streamlit run app.py
-
 ## Future Enhancements
 Planned features to make the system more interactive, explainable, and scalable:
 
@@ -121,7 +97,29 @@ Cost efficiency
 
 5. Prompt Engineering Sandbox
 Experiment with role-specific prompts
-
 Match company tone & quality standards
+---
+## Running the App Locally
 
+### Setup Instructions
+
+```bash
+# Clone the repository
+git clone https://github.com/manasavuppu/Candidate_Recommendation_System.git
+cd Candidate_Recommendation_System
+
+# Create and activate virtual environment
+python3 -m venv cand_rec_env
+source cand_rec_env/bin/activate  # On Windows: cand_rec_env\Scripts\activate
+
+# Install dependencies
+pip install -r requirements.txt
+
+Environment Setup
+Create a .env file in the project root directory with the following content:
+OPENAI_API_KEY=your-openai-key-here
+Ensure that .env is listed in your .gitignore file to avoid accidentally pushing secrets to GitHub.
+
+Run the Application
+streamlit run app.py
 
