@@ -1,5 +1,6 @@
 # Candidate Recommendation System
 Streamlit App Link: https://candidate-recommendation-system.streamlit.app/
+
 Dataset used for testing: https://www.kaggle.com/datasets/snehaanbhawal/resume-dataset
 
 This repository contains an interactive Streamlit application that intelligently matches candidate resumes to job descriptions using semantic similarity techniques and optional AI-generated summaries. It also includes visualizations to help users understand the matching process.
