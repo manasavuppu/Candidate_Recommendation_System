@@ -100,6 +100,8 @@ Cost efficiency
 5. Prompt Engineering Sandbox
 Experiment with role-specific prompts
 Match company tone & quality standards
+
+6. Breaking out config, utils, and models into separate modules for production readiness.
 ---
 ## Running the App Locally
 
