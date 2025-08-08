@@ -92,3 +92,36 @@ Ensure that .env is listed in your .gitignore file to avoid accidentally pushing
 
 Run the Application
 streamlit run app.py
+
+## Future Enhancements
+Planned features to make the system more interactive, explainable, and scalable:
+
+1. Interactive Model Selection Tab
+UI toggle to choose Base Model or Hybrid Model
+
+Display side-by-side outputs & performance metrics
+
+2. Load Handling Demonstration
+Compare speed, accuracy, and cost:
+
+Base Model → Best for small/quick checks
+
+Hybrid Model → Best for cloud vector DB + large-scale memory
+
+3. Cloud Vector Database Integration
+Persistent candidate memory across sessions
+
+Use LlamaIndex for storage & LangChain for reasoning
+
+4. Performance Benchmarking
+Build dashboard with:
+Latency
+Similarity accuracy
+Cost efficiency
+
+5. Prompt Engineering Sandbox
+Experiment with role-specific prompts
+
+Match company tone & quality standards
+
+
