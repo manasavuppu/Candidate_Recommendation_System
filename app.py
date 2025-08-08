@@ -17,10 +17,10 @@ st.title("Candidate Recommendation Engine")
 # Sidebar Settings
 # ============================
 st.sidebar.title("Settings")
-model_choice = st.sidebar.radio("Select Matching Model", ["Base Model (SentenceTransformers)", "Hybrid Model"])
+model_choice = st.sidebar.radio("Select Matching Model", ["Base Model (SentenceTransformers + OpenAI)", "Hybrid Model (LLamaIndex + LangChain) "])
 use_summaries = st.sidebar.checkbox("Generate AI Fit Summaries", value=False)
 top_k = st.sidebar.slider("Number of Top Candidates", min_value=1, max_value=10, value=5)
-min_score = float(st.sidebar.slider("Minimum Similarity Score", 0.0, 1.0, 0.5, step=0.01))
+min_score = float(st.sidebar.slider("Minimum Similarity Score - Cut-off value for Job Match", 0.0, 1.0, 0.5, step=0.01))
 
 # ============================
 # Job Description Input
